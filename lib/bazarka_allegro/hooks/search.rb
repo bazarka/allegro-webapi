@@ -9,8 +9,21 @@ module BazarkaAllegro
 
 
     def search_query(search_string, options = {})
-      message = {session_handle: client.session_handle, search_query: {search_string: search_string}.merge(options)}
-      client.call(:do_search, message: message).body
+      message = { webapi_key: client.webapi_key, country_id: client.country_code }.merge(options)
+
+      unless search_string.blank?
+        message[:filter_options] ||= {}
+        message[:filter_options][:item] ||= []
+
+        message[:filter_options][:item] << {
+            filter_id: 'search',
+            filter_value_id: [
+                { item: search_string }
+            ]
+        }
+      end
+
+      client.call(:do_get_items_list, message: message).body
     end
 
   end

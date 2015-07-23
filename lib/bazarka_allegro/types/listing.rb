@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module BazarkaAllegro
   module Types
     class Listing
