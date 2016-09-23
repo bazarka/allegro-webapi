@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "bazarka_allegro"
-  spec.version       = "0.0.2"
+  spec.version       = "0.0.3"
   spec.authors       = ["Jaroslaw Wozniak"]
   spec.email         = ["jarwoz@gmail.com"]
   spec.description   = %q{Api wrapper for allegro webapi written in ruby. Make it supereasy to interact with allegro api.}

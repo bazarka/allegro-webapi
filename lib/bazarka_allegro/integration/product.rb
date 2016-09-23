@@ -55,7 +55,7 @@ module BazarkaAllegro
 
       private
       def is_connect_with_allegro?
-        self.store.allegro  and self.extension_for_products.where(key: :allegro).where(published: true).present?
+         self.store.allegro.present? and self.store.allegro == '1'  and self.extension_for_products.where(key: :allegro).where(published: true).present?
       end
 
       # tworzymy opcje na podstawie produktu i extension_for_products
