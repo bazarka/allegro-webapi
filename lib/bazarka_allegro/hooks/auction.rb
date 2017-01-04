@@ -24,7 +24,7 @@ module BazarkaAllegro
 
       # items that did not sell
       def do_get_my_not_sold_items(item_ids = nil)
-        message = {session_id: client.session_handle, item_ids: item_ids}
+        item_ids.present? ? message = {session_id: client.session_handle, item_ids: item_ids} : message = {session_id: client.session_handle}
         #message = {session_id: client.session_handle}
         client.call(:do_get_my_not_sold_items, message: message )
       end
@@ -75,6 +75,27 @@ module BazarkaAllegro
       def do_finish_item(item_id)
         message = {session_handle: client.session_handle, finish_item_id: item_id}
         client.call(:do_finish_item, message: message)
+      end
+
+      #nowe funkcje
+
+      #pobierz komentarze
+      #komentarze wystawione przez uzytkownika
+      def do_get_feedback_from(user_id)
+        m={session_handle: client.session_handle, feedbackFrom: user_id, feedbackTo: 0}
+        client.call(:do_get_feedback, message: m)
+      end
+
+      #komentarze ktore zostały wwystawione uzytkownikowi
+      def do_get_feedback_to(user_id)
+        m={session_handle: client.session_handle, feedbackFrom: 0, feedbackTo: user_id}
+        client.call(:do_get_feedback, message: m)
+      end
+
+      #dodaj opis do aukcji
+      def do_add_desc_to_items(items_ids=[], description="")
+        m={session_handle: client.session_handle, itemsIdArray: {item: items_ids}, itDescription: description}
+        client.call(:do_add_desc_to_items, message: m)
       end
 
 
