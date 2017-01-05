@@ -98,6 +98,12 @@ module BazarkaAllegro
         client.call(:do_add_desc_to_items, message: m)
       end
 
+      #zmien cene aukcji
+      def do_change_price_item(item_id, starting_price, reserve_price, buy_now_price)
+        m={session_handle: client.session_handle, itemId: item_id, newStartingPrice: starting_price, newReservePrice: reserve_price, newBuyNowPrice: buy_now_price}
+        client.call(:do_change_price_item, message: m)
+      end
+
 
       # pobiera informac
       def do_get_items_info(items_id_array, get_desc = 1, get_image_url = 1, get_attribs = 1, get_postage_options = 1, get_company_info = 0)
