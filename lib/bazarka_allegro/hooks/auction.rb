@@ -52,7 +52,9 @@ module BazarkaAllegro
       # wystawia nowa aukcje
       def do_new_auction_ext(fields = {})
         #puts fields
-        message = {session_handle: client.session_handle, fields: fields, item_template_id: 0, local_id: 123, item_template_create: {item_template_option: 0, item_template_name: ''}}
+        message = {session_handle: client.session_handle, fields: fields, item_template_id: 0, local_id: 123,
+                   item_template_create: {item_template_option: 0, item_template_name: ''},
+                   after_sales_service_conditions: {}}
         #puts message
         client.call(:do_new_auction_ext, message: message )
       end
